@@ -1,16 +1,20 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-const Home = () => {
-    return (
-        <View>
-            <Container>
-                <ToBudget to="/budget">Budget</ToBudget>
-                <ToGoals to="/goals">Goals</ToGoals>
-            </Container>
-        </View>
-    )
+class Home extends Component {
+    render() {
+        console.log(this.props)
+        return (
+            <View>
+                <Container>
+                    <ToBudget to="/budget">Budget</ToBudget>
+                    <ToGoals to="/goals">Goals</ToGoals>
+                </Container>
+            </View>
+        )
+    }
 }
 
 const View = styled.div`
@@ -49,4 +53,11 @@ const ToGoals = styled(Link)`
     border-bottom: #088be8 3px solid;
     background: #2196f3;
 `
-export default Home
+
+const mapStateToProps = (state) => {
+    return {
+        things: state.things
+    }
+}
+
+export default connect(mapStateToProps)(Home)
